@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mena ❤️</title>
+    <title>Asmaa ❤️</title>
     <style>
         * {
             box-sizing: border-box;
@@ -148,7 +148,7 @@
             gap: 8px;
         }
 
-        /* ⏳ 2. شاشة التحميل (Loading Screen) */
+        /* ⏳ 2. شاشة التحميل */
         #loader-screen {
             display: none;
             background: rgba(27, 13, 46, 0.95);
@@ -600,13 +600,13 @@
             
             <div class="header-card">
                 <div class="love-badge">بحبك ✨❤️</div>
-                <div class="user-name">Mena</div>
+                <div class="user-name">Asmaa</div>
                 <div class="header-desc">يوم ما عرفنا بعض كان يوم ولادتي ❤️</div>
             </div>
 
             <div class="info-box">
                 <div class="info-title">❤️ اول مرة اتقابلنا</div>
-                <div class="info-date">2025-11-11 📅</div>
+                <div class="info-date">2023-03-30 📅</div>
             </div>
 
             <div class="timer-card">
@@ -725,7 +725,7 @@
         <div class="modal-box">
             <span class="close-icon" onclick="closeModal()">✕</span>
             <div class="modal-mail-icon">✉️</div>
-            <div class="modal-name">Mena</div>
+            <div class="modal-name">Asmaa</div>
             <div class="modal-body-text">
                 ربنا يخليكي ليا ومايحرمنيش منك ابدا يا روح قلبي ويارب العمر كله مع بعض ❤️
             </div>
@@ -748,17 +748,14 @@
         function checkPassword() {
             const input = document.getElementById('passInput').value.trim().toLowerCase();
             if (input === 'love' || input === 'حب') {
-                // إخفاء شاشة الدخول وإظهار شاشة التحميل
                 document.getElementById('login-screen').style.display = 'none';
                 document.getElementById('loader-screen').style.display = 'block';
 
-                // المرحلة الأولى من التحميل
                 setTimeout(() => {
                     document.getElementById('loader-text').innerText = 'ثواني ياروحي ❤️';
                     document.getElementById('loader-subtext').innerText = 'بنجهزلك مفاجأة صغيرة...';
                 }, 1200);
 
-                // فتح الموقع الرئيسي بعد الانتهاء
                 setTimeout(() => {
                     document.getElementById('loader-screen').style.display = 'none';
                     document.getElementById('main-content').style.display = 'block';
@@ -809,7 +806,8 @@
         }
 
         function startLiveCounter() {
-            const startDate = new Date('2025-11-11T00:00:00');
+            // تاريخ بداية العلاقة: 30 مارس 2023
+            const startDate = new Date('2023-03-30T00:00:00');
 
             setInterval(() => {
                 const now = new Date();
