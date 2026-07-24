@@ -52,8 +52,8 @@
         }
 
         .heart-box {
-            font-size: 55px;
-            margin: 5px 0 15px 0;
+            font-size: 50px;
+            margin: 0 0 10px 0;
             animation: heartbeat 1.2s infinite;
         }
 
@@ -61,6 +61,26 @@
             0% { transform: scale(1); }
             50% { transform: scale(1.15); }
             100% { transform: scale(1); }
+        }
+
+        .music-btn {
+            background: rgba(255, 77, 136, 0.15);
+            border: 1px solid #ff4d88;
+            color: #ffb3d1;
+            padding: 8px 15px;
+            font-size: 13px;
+            border-radius: 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 15px;
+            transition: 0.2s;
+        }
+
+        .music-btn:active {
+            transform: scale(0.95);
+            background: rgba(255, 77, 136, 0.3);
         }
 
         .counter-box {
@@ -150,6 +170,11 @@
 </head>
 <body>
 
+    <!-- الأغنية المرفوعة في المستودع -->
+    <audio id="loveSong" loop>
+        <source src="song.mp3" type="audio/mp3">
+    </audio>
+
     <div class="phone-container">
         <div class="header">
             لعيون حب حياتي ❤️
@@ -158,7 +183,10 @@
         <div class="content">
             <div class="heart-box">💖</div>
 
-            <!-- عداد الحب (محسوب من 11 نوفمبر 2025) -->
+            <button class="music-btn" onclick="toggleMusic()">
+                <span id="music-icon">🎵</span> <span id="music-text">تشغيل أغنية حبنا</span>
+            </button>
+
             <div class="counter-box">
                 <div class="counter-title">قصة حبنا بدأت من يوم 11 نوفمبر 2025:</div>
                 <div class="counter-number" id="love-counter">--</div>
@@ -180,7 +208,25 @@
     </div>
 
     <script>
-        // تاريخ البداية: 11 نوفمبر 2025
+        const song = document.getElementById('loveSong');
+        const musicText = document.getElementById('music-text');
+        const musicIcon = document.getElementById('music-icon');
+        let isPlaying = false;
+
+        function toggleMusic() {
+            if (isPlaying) {
+                song.pause();
+                musicText.innerText = "تشغيل أغنية حبنا";
+                musicIcon.innerText = "🎵";
+                isPlaying = false;
+            } else {
+                song.play();
+                musicText.innerText = "إيقاف الأغنية مؤقتاً";
+                musicIcon.innerText = "⏸️";
+                isPlaying = true;
+            }
+        }
+
         function calculateLoveTime() {
             const startDate = new Date('2025-11-11T00:00:00'); 
             const now = new Date();
