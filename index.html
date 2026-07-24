@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SARA ❤️</title>
+    <title>Mena ❤️</title>
     <style>
         * {
             box-sizing: border-box;
@@ -186,7 +186,7 @@
             letter-spacing: 1px;
         }
 
-        /* العداد المباشر بنفس التقسيم (سنة، شهر، يوم، ساعة، دقيقة، ثانية) */
+        /* العداد المباشر بنفس التقسيم */
         .timer-card {
             background: rgba(27, 13, 46, 0.8);
             border: 1px solid rgba(255, 102, 153, 0.2);
@@ -307,7 +307,7 @@
             line-height: 1.4;
         }
 
-        /* قسم حياتي باختصار هنا (معرض الصور) */
+        /* معرض الصور */
         .section-header {
             font-size: 16px;
             color: #ffffff;
@@ -440,7 +440,7 @@
             cursor: pointer;
         }
 
-        /* المشغل في أسفل الشاشة ثابت */
+        /* المشغل بالأسفل ثابت */
         .bottom-audio-player {
             position: fixed;
             bottom: 15px;
@@ -520,13 +520,13 @@
             
             <div class="header-card">
                 <div class="love-badge">بحبك ✨❤️</div>
-                <div class="user-name">SARA</div>
+                <div class="user-name">Mena</div>
                 <div class="header-desc">يوم ما عرفنا بعض كان يوم ولادتي ❤️</div>
             </div>
 
             <div class="info-box">
-                <div class="info-title">❤️ أول مرة اتقابلنا</div>
-                <div class="info-date">2021-04-04 📅</div>
+                <div class="info-title">❤️ اول مرة اتقابلنا</div>
+                <div class="info-date">2025-11-11 📅</div>
             </div>
 
             <div class="timer-card">
@@ -645,7 +645,7 @@
         <div class="modal-box">
             <span class="close-icon" onclick="closeModal()">✕</span>
             <div class="modal-mail-icon">✉️</div>
-            <div class="modal-name">سارة</div>
+            <div class="modal-name">Mena</div>
             <div class="modal-body-text">
                 ربنا يخليكي ليا ومايحرمنيش منك ابدا يا روح قلبي ويارب العمر كله مع بعض ❤️
             </div>
@@ -665,7 +665,6 @@
     </div>
 
     <script>
-        // التحقق من كلمة السر
         function checkPassword() {
             const input = document.getElementById('passInput').value.trim().toLowerCase();
             if (input === 'love' || input === 'حب') {
@@ -673,10 +672,7 @@
                 document.getElementById('main-content').style.display = 'block';
                 document.getElementById('audioBar').style.display = 'flex';
                 
-                // تشغيل الأغنية فوراً
                 playAudio();
-                
-                // بدء العداد
                 startLiveCounter();
             } else {
                 alert('الباسورد غلط يا روحي! جربي love 😉');
@@ -718,9 +714,9 @@
             document.getElementById('messageModal').style.display = 'none';
         }
 
-        // حساب العداد المباشر بدقة بنفس تاريخ بالفيديو (2021-04-04)
+        // العداد يحسب بدقة انطلاقاً من التاريخ المعدل 2025-11-11
         function startLiveCounter() {
-            const startDate = new Date('2021-04-04T00:00:00');
+            const startDate = new Date('2025-11-11T00:00:00');
 
             setInterval(() => {
                 const now = new Date();
@@ -743,16 +739,15 @@
                 const diffMins = now.getMinutes();
                 const diffSecs = now.getSeconds();
 
-                document.getElementById('t-years').innerText = years;
-                document.getElementById('t-months').innerText = months;
-                document.getElementById('t-days').innerText = days;
+                document.getElementById('t-years').innerText = Math.max(0, years);
+                document.getElementById('t-months').innerText = Math.max(0, months);
+                document.getElementById('t-days').innerText = Math.max(0, days);
                 document.getElementById('t-hours').innerText = diffHours;
                 document.getElementById('t-mins').innerText = diffMins;
                 document.getElementById('t-secs').innerText = diffSecs;
             }, 1000);
         }
 
-        // القلوب الطائرة بالخلفية
         function createHearts() {
             const container = document.getElementById('heartContainer');
             for(let i=0; i<25; i++) {
