@@ -36,24 +36,24 @@
 
         .header {
             background: linear-gradient(135deg, #ff1a75, #ff4d88);
-            padding: 15px;
+            padding: 18px;
             text-align: center;
-            font-size: 18px;
+            font-size: 19px;
             font-weight: bold;
             color: #fff;
             box-shadow: 0 4px 10px rgba(0,0,0,0.3);
         }
 
         .content {
-            padding: 16px;
+            padding: 20px 16px;
             display: flex;
             flex-direction: column;
             align-items: center;
         }
 
         .heart-box {
-            font-size: 50px;
-            margin: 10px 0;
+            font-size: 55px;
+            margin: 5px 0 15px 0;
             animation: heartbeat 1.2s infinite;
         }
 
@@ -67,10 +67,10 @@
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(255, 77, 136, 0.3);
             border-radius: 15px;
-            padding: 14px;
+            padding: 16px;
             text-align: center;
             width: 100%;
-            margin-bottom: 15px;
+            margin-bottom: 18px;
         }
 
         .counter-title {
@@ -90,11 +90,11 @@
             background: rgba(255, 77, 136, 0.1);
             border: 1px dashed #ff4d88;
             border-radius: 12px;
-            padding: 14px;
+            padding: 16px;
             text-align: center;
             width: 100%;
             margin-bottom: 15px;
-            min-height: 80px;
+            min-height: 85px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -110,6 +110,104 @@
             background: linear-gradient(135deg, #ff1a75, #ff4d88);
             border: none;
             color: white;
+            padding: 12px 20px;
+            font-size: 14px;
+            font-weight: bold;
+            border-radius: 20px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(255, 26, 117, 0.4);
+            transition: 0.2s;
+            margin-bottom: 18px;
+            width: 100%;
+        }
+
+        .love-btn:active {
+            transform: scale(0.96);
+        }
+
+        .message-box {
+            background-color: #150a10;
+            border-right: 3px solid #ff4d88;
+            padding: 14px;
+            border-radius: 8px;
+            font-size: 12px;
+            line-height: 1.7;
+            color: #ffccdc;
+            text-align: justify;
+            width: 100%;
+            margin-bottom: 5px;
+        }
+
+        .footer {
+            background-color: #12070c;
+            padding: 12px;
+            text-align: center;
+            font-size: 11px;
+            color: #884466;
+            border-top: 1px solid rgba(255, 77, 136, 0.1);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="phone-container">
+        <div class="header">
+            لعيون حب حياتي ❤️
+        </div>
+
+        <div class="content">
+            <div class="heart-box">💖</div>
+
+            <!-- عداد الحب (محسوب من 11 نوفمبر 2025) -->
+            <div class="counter-box">
+                <div class="counter-title">قصة حبنا بدأت من يوم 11 نوفمبر 2025:</div>
+                <div class="counter-number" id="love-counter">--</div>
+            </div>
+
+            <div class="reason-card">
+                <div class="reason-text" id="reason-display">اضغطي على الزرار عشان تعرفي أنا بحبك قد إيه وعشاني مميزة عندي! 👇</div>
+            </div>
+            <button class="love-btn" onclick="showRandomReason()">ليه أنا بحبك؟ ✨</button>
+
+            <div class="message-box">
+                يا أجمل صدفة حصلت في حياتي، وجودك بيكفي عشان يخلي أيامي أحلى. بحبك ومش بس بحبك، أنا بعشق كل تفصيلة فيكي. ربنا يخليكي ليا دايماً وما يحرمنيش منك أبداً يا كل حاجة حلوة في دنيتي.
+            </div>
+        </div>
+
+        <div class="footer">
+            صُنع بكل حب وعشق عشاني 💍✨
+        </div>
+    </div>
+
+    <script>
+        // تاريخ البداية: 11 نوفمبر 2025
+        function calculateLoveTime() {
+            const startDate = new Date('2025-11-11T00:00:00'); 
+            const now = new Date();
+            const diffTime = Math.abs(now - startDate);
+            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+            
+            document.getElementById('love-counter').innerText = diffDays + " يوم من الحب ❤️";
+        }
+
+        const reasons = [
+            "بحبك عشان ضحكتك بتنور ليا الدنيا في أسوأ أوقاتي.",
+            "بحبك عشان حنيتك وطيبتك مالهاش مثيل في الدنيا دي.",
+            "بحبك عشان دايماً بتفهميني من غير ما أتكلم.",
+            "بحبك عشان وجودك جنبي بيخليني أحسن نسخة من نفسي.",
+            "بحبك عشان عيونك هما أماني ومطرحي.",
+            "بحبك ببساطة لأنك أنتي إنتي.. قلبي وعقلي وروحي."
+        ];
+
+        function showRandomReason() {
+            const randomIndex = Math.floor(Math.random() * reasons.length);
+            document.getElementById('reason-display').innerText = reasons[randomIndex];
+        }
+
+        calculateLoveTime();
+    </script>
+</body>
+</html>
             padding: 10px 20px;
             font-size: 14px;
             font-weight: bold;
