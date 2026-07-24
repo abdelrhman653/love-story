@@ -18,8 +18,8 @@
             min-height: 100vh;
             display: flex;
             justify-content: center;
-            align-items: center;
-            overflow-x: hidden;
+            align-items: flex-start;
+            padding: 15px 0 60px 0;
             position: relative;
         }
 
@@ -37,7 +37,7 @@
 
         .heart-particle {
             position: absolute;
-            color: rgba(255, 77, 136, 0.4);
+            color: rgba(255, 77, 136, 0.35);
             font-size: 20px;
             animation: floatUp 6s linear infinite;
             bottom: -30px;
@@ -57,14 +57,14 @@
             padding: 20px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8), 0 0 20px rgba(255, 77, 136, 0.2);
             z-index: 10;
-            margin: 15px;
+            margin: 10px;
             position: relative;
         }
 
         /* 🔒 شاشة كلمة السر */
         #login-screen {
             text-align: center;
-            padding: 30px 10px;
+            padding: 40px 10px;
         }
 
         .login-title {
@@ -92,7 +92,6 @@
             font-size: 16px;
             outline: none;
             margin-bottom: 15px;
-            letter-spacing: 2px;
         }
 
         .pass-btn {
@@ -108,7 +107,7 @@
             box-shadow: 0 4px 15px rgba(255, 26, 117, 0.4);
         }
 
-        /* 💖 المحتوى الرئيسي بعد فتح الباسورد */
+        /* 💖 المحتوى الرئيسي */
         #main-content {
             display: none;
         }
@@ -119,10 +118,10 @@
         }
 
         .user-name {
-            font-size: 26px;
+            font-size: 28px;
             font-weight: 900;
             color: #ff6699;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
         }
 
         .sub-header {
@@ -141,11 +140,11 @@
             border-radius: 18px;
             padding: 15px;
             text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
 
         .counter-title {
-            font-size: 14px;
+            font-size: 13px;
             color: #ffb3d1;
             margin-bottom: 12px;
             font-weight: bold;
@@ -179,7 +178,7 @@
         .section-title {
             font-size: 14px;
             color: #ffb3d1;
-            margin: 15px 0 10px 0;
+            margin: 20px 0 10px 0;
             text-align: center;
             font-weight: bold;
         }
@@ -188,7 +187,7 @@
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 10px;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
 
         .interactive-card {
@@ -213,6 +212,37 @@
             font-weight: bold;
         }
 
+        /* 📸 قسم الصور والذكريات (زي الفيديو) */
+        .gallery-section {
+            margin-bottom: 25px;
+        }
+
+        .photo-card {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 77, 136, 0.3);
+            border-radius: 16px;
+            overflow: hidden;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+        }
+
+        .photo-card img {
+            width: 100%;
+            height: auto;
+            max-height: 280px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .photo-caption {
+            padding: 12px 15px;
+            font-size: 13px;
+            color: #ffe6ee;
+            text-align: center;
+            line-height: 1.6;
+            background: rgba(255, 77, 136, 0.1);
+        }
+
         /* الزرار النهائي السري */
         .secret-btn {
             width: 100%;
@@ -225,7 +255,7 @@
             font-weight: bold;
             cursor: pointer;
             margin-top: 10px;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
             box-shadow: 0 0 15px rgba(255, 77, 136, 0.3);
         }
 
@@ -283,7 +313,7 @@
             cursor: pointer;
         }
 
-        /* مشغل الصوت بالأسفل */
+        /* مشغل الصوت المثبت بالأسفل */
         .audio-bar {
             position: fixed;
             bottom: 12px;
@@ -318,14 +348,17 @@
 </head>
 <body>
 
+    <!-- القلوب الطائرة -->
     <div class="heart-bg" id="heartContainer"></div>
 
+    <!-- ملف الصوت -->
     <audio id="loveSong" loop preload="auto">
         <source src="song.mp3" type="audio/mp3">
     </audio>
 
     <div class="main-card">
         
+        <!-- 🔒 1. شاشة كلمة السر -->
         <div id="login-screen">
             <div class="login-title">جاهزة؟ 🤔</div>
             <div class="login-subtitle">كل اللي هنا هيفضل بيني وبينك طول العمر ❤️</div>
@@ -333,12 +366,14 @@
             <button class="pass-btn" onclick="checkPassword()">يلا بسرعة افتحي 😉❤️</button>
         </div>
 
+        <!-- 💖 2. المحتوى الرئيسي -->
         <div id="main-content">
             <div class="header-section">
                 <div class="user-name">SARA ❤️</div>
                 <div class="sub-header">يوم ما عرفنا بعض كان يوم ولادتي ❤️</div>
             </div>
 
+            <!-- العداد المباشر -->
             <div class="counter-section">
                 <div class="counter-title">بداية عمري معاكي (11 نوفمبر 2025):</div>
                 <div class="timer-grid">
@@ -349,6 +384,7 @@
                 </div>
             </div>
 
+            <!-- الكروت التفاعلية -->
             <div class="section-title">دوسي على الكروت 😉❤️</div>
             <div class="cards-grid">
                 <div class="interactive-card" onclick="openCard(this, 'محبتش حد أدك ❤️')">الكارت الأول 🎁</div>
@@ -357,11 +393,43 @@
                 <div class="interactive-card" onclick="openCard(this, 'زي ما حبيتك يا أجمل حاجة ف حياتي 💍')">الكارت الرابع 🎁</div>
             </div>
 
+            <!-- 📸 معرض الصور مع الرسائل (حياتي باختصار هنا) -->
+            <div class="section-title">حياتي باختصار هنا 👇❤️</div>
+            <div class="gallery-section">
+                
+                <div class="photo-card">
+                    <!-- غير img1.jpg باسم الصورة اللي هترفعها -->
+                    <img src="img1.jpg" alt="صورة 1" onerror="this.src='https://via.placeholder.com/400x300/ff4d88/ffffff?text=بحبك+يا+نور+عيني'">
+                    <div class="photo-caption">بحبك يا نورعيني ❤️</div>
+                </div>
+
+                <div class="photo-card">
+                    <!-- غير img2.jpg باسم الصورة الثانية -->
+                    <img src="img2.jpg" alt="صورة 2" onerror="this.src='https://via.placeholder.com/400x300/ff4d88/ffffff?text=كل+لحظة+في+عمري'">
+                    <div class="photo-caption">كل لحظة في عمري بتمنى تكون معاكي ❤️</div>
+                </div>
+
+                <div class="photo-card">
+                    <!-- غير img3.jpg باسم الصورة الثالثة -->
+                    <img src="img3.jpg" alt="صورة 3" onerror="this.src='https://via.placeholder.com/400x300/ff4d88/ffffff?text=كل+سنة+واحنا+مع+بعض'">
+                    <div class="photo-caption">كل سنة واحنا مع بعض ❤️✨</div>
+                </div>
+
+                <div class="photo-card">
+                    <!-- غير img4.jpg باسم الصورة الرابعة -->
+                    <img src="img4.jpg" alt="صورة 4" onerror="this.src='https://via.placeholder.com/400x300/ff4d88/ffffff?text=أنا+والقمر'">
+                    <div class="photo-caption">أنا والقمر 😋❤️</div>
+                </div>
+
+            </div>
+
+            <!-- زر الرسالة الختامية -->
             <button class="secret-btn" onclick="showModal()">لسه مخلصتش دوسي هنا 🔒😉❤️</button>
         </div>
 
     </div>
 
+    <!-- ✉️ النافذة المنبثقة للرسالة الأخيرة -->
     <div class="modal-overlay" id="messageModal">
         <div class="modal-box">
             <div class="modal-icon">✉️</div>
@@ -372,13 +440,13 @@
         </div>
     </div>
 
+    <!-- 🎵 شريط الأغنية بالأسفل -->
     <div class="audio-bar" id="audioBar" style="display: none;">
         <button class="audio-btn" onclick="toggleAudio()" id="playBtn">▶</button>
         <span>أغنيتنا ❤️</span>
     </div>
 
     <script>
-        // كلمة السر الافتراضية هي: love
         function checkPassword() {
             const input = document.getElementById('passInput').value.trim().toLowerCase();
             if (input === 'love' || input === 'LOVE' || input === 'حب') {
@@ -386,7 +454,7 @@
                 document.getElementById('main-content').style.display = 'block';
                 document.getElementById('audioBar').style.display = 'flex';
                 
-                // تشغيل الصوت
+                // تشغيل الأغنية فوراً عند الضغط
                 playAudio();
                 
                 // تشغيل العداد
@@ -396,14 +464,14 @@
             }
         }
 
-        // تشغيل وإيقاف الأغنية
         const audio = document.getElementById('loveSong');
         const playBtn = document.getElementById('playBtn');
 
         function playAudio() {
             audio.play().then(() => {
                 playBtn.innerText = '❚❚';
-            }).catch(() => {
+            }).catch(err => {
+                console.log("Audio play failed: ", err);
                 playBtn.innerText = '▶';
             });
         }
@@ -418,13 +486,11 @@
             }
         }
 
-        // فتح الكروت التفاعلية
         function openCard(element, text) {
             element.innerText = text;
             element.classList.add('opened');
         }
 
-        // الرسالة المنبثقة
         function showModal() {
             document.getElementById('messageModal').style.display = 'flex';
         }
@@ -433,7 +499,6 @@
             document.getElementById('messageModal').style.display = 'none';
         }
 
-        // حساب العداد بالثواني والدقائق والساعات والأيام من تاريخ 11 نوفمبر 2025
         function startCounter() {
             const startDate = new Date('2025-11-11T00:00:00');
 
@@ -453,7 +518,6 @@
             }, 1000);
         }
 
-        // توليد قلوب طائرة في الخلفية
         function createHearts() {
             const container = document.getElementById('heartContainer');
             for(let i=0; i<20; i++) {
@@ -470,4 +534,3 @@
     </script>
 </body>
 </html>
-
