@@ -970,11 +970,10 @@
                 </div>
             </div>
 
-            <!-- ❤️ قائمة أحلامنا معًا (Bucket List) -->
+            <!-- ❤️ قائمة أحلامنا معًا (Bucket List) مع Firebase -->
             <div class="app-section">
                 <div class="app-section-title">❤️ أحلامنا معًا ❤️</div>
                 
-                <!-- شريط التقدم داخل القسم في الأعلى -->
                 <div class="progress-card">
                     <div class="progress-text" id="progressText">❤️ أنجزنا 0 من أصل 0 (0%)</div>
                     <div class="progress-bar-container">
@@ -989,18 +988,15 @@
                 <div class="app-list" id="bucketList"></div>
             </div>
 
-            <!-- زر الانتقال إلى استوديو الصور -->
             <button class="final-btn" onclick="window.location.href='gallery.html'">
                 📸 استوديو صورنا
             </button>
 
-            <!-- 💖 رسالة اليوم -->
             <div class="app-section" style="text-align: center;">
                 <div class="app-section-title">💖 رسالة اليوم لكي</div>
                 <div id="dailyLoveMessage" style="font-size: 14px; color: #ffe6ee; line-height: 1.6; padding: 10px;"></div>
             </div>
 
-            <!-- ⏳ Timeline زمني -->
             <div class="app-section">
                 <div class="app-section-title">⏳ شريط ذكرياتنا الزمني</div>
                 <div class="app-list" id="timelineList"></div>
@@ -1052,7 +1048,6 @@
                 🔒🥳 لسه مخلصتش دوسي هنا
             </button>
 
-            <!-- 💻 قسم حقوق المطور -->
             <div class="developer-credit-card">
                 <div class="developer-credit-text">
                     تم التطوير بواسطة 💻❤️
@@ -1089,24 +1084,24 @@
         <button class="play-pause-btn" id="playBtn" aria-label="تشغيل أو إيقاف الصوت">❚❚</button>
     </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const Storage = {
-                get(key, defaultVal) {
-                    try {
-                        const item = localStorage.getItem('asmaa_love_' + key);
-                        return item ? JSON.parse(item) : defaultVal;
-                    } catch (e) {
-                        return defaultVal;
-                    }
-                },
-                set(key, val) {
-                    try {
-                        localStorage.setItem('asmaa_love_' + key, JSON.stringify(val));
-                    } catch (e) {}
-                }
-            };
+    <!-- ربط السكربتات بـ Firebase Firestore -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.17.0/firebase-app.js";
+        import { getFirestore, collection, addDoc, getDocs, doc, updateDoc, deleteDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/12.17.0/firebase-firestore.js";
 
+        const firebaseConfig = {
+            apiKey: "AIzaSyCP_5o937aBSzKyRQoI4wahZ3Jexdwz1XQ",
+            authDomain: "my-projects-768db.firebaseapp.com",
+            projectId: "my-projects-768db",
+            storageBucket: "my-projects-768db.firebasestorage.app",
+            messagingSenderId: "876862009228",
+            appId: "1:876862009228:web:c21a8569e9acd69e0770a9"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        document.addEventListener('DOMContentLoaded', () => {
             const passInput = document.getElementById('passInput');
             const loginBtn = document.getElementById('loginBtn');
 
@@ -1258,65 +1253,76 @@
             createHearts();
 
             function initAllFeatures() {
-                const defaultBuckets = [
-                    { id: 1, text: 'سفرية رومانسي مع بعض', completed: false },
-                    { id: 2, text: 'حضور فيلم في السينما وحدنا', completed: true }
-                ];
-                let buckets = Storage.get('buckets', defaultBuckets);
-
                 const bucketListEl = document.getElementById('bucketList');
                 const bucketInput = document.getElementById('bucketInput');
                 const addBucketBtn = document.getElementById('addBucketBtn');
 
-                function renderBuckets() {
+                // جلب ومزامنة قائمة الأحلام من قاعدة البيانات (Firebase Firestore)
+                onSnapshot(collection(db, "buckets"), (snapshot) => {
+                    let buckets = [];
+                    snapshot.forEach((docSnap) => {
+                        buckets.push({ id: docSnap.id, ...docSnap.data() });
+                    });
+                    renderBuckets(buckets);
+                });
+
+                function renderBuckets(buckets) {
                     if (!bucketListEl) return;
                     bucketListEl.innerHTML = '';
-                    buckets.forEach((item, index) => {
+                    buckets.forEach((item) => {
                         const div = document.createElement('div');
                         div.className = `app-item ${item.completed ? 'completed' : ''}`;
                         div.innerHTML = `
-                            <div class="app-item-content" data-action="toggle-bucket" data-index="${index}">
+                            <div class="app-item-content" data-action="toggle-bucket" data-id="${item.id}" data-completed="${item.completed}">
                                 <span>${item.completed ? '❤️ ' : '☐ '} ${escapeHtml(item.text)}</span>
                             </div>
                             <div class="app-actions">
-                                <button class="action-icon-btn delete" data-action="delete-bucket" data-index="${index}">🗑️</button>
+                                <button class="action-icon-btn delete" data-action="delete-bucket" data-id="${item.id}">🗑️</button>
                             </div>
                         `;
                         bucketListEl.appendChild(div);
                     });
-                    Storage.set('buckets', buckets);
-                    updateProgress();
+                    updateProgress(buckets);
                 }
 
                 if (addBucketBtn) {
-                    addBucketBtn.addEventListener('click', () => {
+                    addBucketBtn.addEventListener('click', async () => {
                         const val = bucketInput.value.trim();
                         if (val) {
-                            buckets.push({ id: Date.now(), text: val, completed: false });
-                            bucketInput.value = '';
-                            renderBuckets();
+                            try {
+                                await addDoc(collection(db, "buckets"), {
+                                    text: val,
+                                    completed: false,
+                                    createdAt: Date.now()
+                                });
+                                bucketInput.value = '';
+                            } catch (e) {
+                                console.error("Error adding document: ", e);
+                            }
                         }
                     });
                 }
 
                 if (bucketListEl) {
-                    bucketListEl.addEventListener('click', (e) => {
+                    bucketListEl.addEventListener('click', async (e) => {
                         const target = e.target.closest('[data-action]');
                         if (!target) return;
                         const action = target.getAttribute('data-action');
-                        const index = target.getAttribute('data-index');
+                        const id = target.getAttribute('data-id');
+                        
                         if (action === 'toggle-bucket') {
-                            buckets[index].completed = !buckets[index].completed;
-                            renderBuckets();
+                            const currentCompleted = target.getAttribute('data-completed') === 'true';
+                            const docRef = doc(db, "buckets", id);
+                            await updateDoc(docRef, {
+                                completed: !currentCompleted
+                            });
                         } else if (action === 'delete-bucket') {
-                            buckets.splice(index, 1);
-                            renderBuckets();
+                            await deleteDoc(doc(db, "buckets", id));
                         }
                     });
                 }
-                renderBuckets();
 
-                function updateProgress() {
+                function updateProgress(buckets) {
                     const total = buckets.length;
                     const completed = buckets.filter(i => i.completed).length;
                     const percent = total > 0 ? Math.round((completed / total) * 100) : 0;
@@ -1327,7 +1333,6 @@
                     if (progressText) progressText.innerText = `❤️ أنجزنا ${completed} من أصل ${total} (${percent}%)`;
                     if (progressBarFill) progressBarFill.style.width = percent + '%';
                 }
-                updateProgress();
 
                 const dailyMessages = [
                     "وجودك معي يغنيني عن العالم بأكمله يا أجمل أقداري ❤️",
