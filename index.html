@@ -486,6 +486,47 @@
             border-color: var(--accent-pink);
         }
 
+        /* 💻 قسم حقوق المطور الجديد */
+        .developer-credit-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-pink);
+            border-radius: 22px;
+            padding: 18px;
+            margin-top: 25px;
+            margin-bottom: 15px;
+            text-align: center;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            transition: var(--transition-smooth);
+        }
+
+        .developer-credit-card:hover {
+            border-color: var(--accent-pink);
+            transform: translateY(-2px);
+        }
+
+        .developer-credit-text {
+            font-size: 13px;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        .developer-name {
+            display: block;
+            font-size: 14px;
+            font-weight: bold;
+            color: var(--accent-pink);
+            margin-top: 4px;
+            letter-spacing: 0.5px;
+            transition: var(--transition-smooth);
+        }
+
+        .developer-credit-card:hover .developer-name {
+            color: #ff80ab;
+            text-shadow: 0 0 8px var(--accent-pink-glow);
+        }
+
         .footer-credit {
             text-align: center;
             font-size: 10px;
@@ -1153,6 +1194,14 @@
             <button class="final-btn" id="modalOpenBtn">
                 🔒🥳 لسه مخلصتش دوسي هنا
             </button>
+
+            <!-- 💻 قسم حقوق المطور -->
+            <div class="developer-credit-card">
+                <div class="developer-credit-text">
+                    تم التطوير بواسطة 💻❤️
+                    <span class="developer-name">Abdelrhman Mohamed | Web Developer</span>
+                </div>
+            </div>
 
             <div class="footer-credit">Designed with love by Art club ❤️</div>
 
@@ -1839,8 +1888,5 @@
             }
         });
     </script>
-        <div style="text-align: center; padding: 20px 0; background: var(--dark-card, #151B22); border-top: 1px solid var(--border, #30363D); margin-top: 40px; color: var(--gray, #8B949E); font-size: 13px; font-family: 'Cairo', sans-serif;">
-    تم التطوير بواسطة <span style="color: var(--primary, #FF4757); font-weight: 700;">Abdelrhman Mohamed | Web Developer</span>
-        </div>
 </body>
 </html>
