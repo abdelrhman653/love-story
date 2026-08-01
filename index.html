@@ -5,6 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Asmaa ❤️</title>
     <style>
+        :root {
+            --primary-bg: #110522;
+            --card-bg: rgba(27, 13, 46, 0.85);
+            --card-bg-solid: #1b0d2e;
+            --accent-pink: #ff4d88;
+            --accent-pink-glow: rgba(255, 77, 136, 0.4);
+            --border-pink: rgba(255, 102, 153, 0.25);
+            --text-main: #ffffff;
+            --text-muted: #d8c3f1;
+            --text-sub: #b39ddb;
+            --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
         * {
             box-sizing: border-box;
             margin: 0;
@@ -14,8 +27,8 @@
         }
 
         body {
-            background: #110522;
-            color: #ffffff;
+            background: var(--primary-bg);
+            color: var(--text-main);
             min-height: 100vh;
             display: flex;
             justify-content: center;
@@ -32,10 +45,11 @@
             left: 0;
             width: 100%;
             height: 350px;
-            background: linear-gradient(to bottom, rgba(17, 5, 34, 0.4), #110522), url('bg.jpg') center/cover no-repeat;
+            background: linear-gradient(to bottom, rgba(17, 5, 34, 0.4), var(--primary-bg)), url('bg.jpg') center/cover no-repeat;
             z-index: 0;
             opacity: 0.6;
             pointer-events: none;
+            will-change: opacity;
         }
 
         /* القلوب الطائرة بالخلفية */
@@ -56,6 +70,7 @@
             font-size: 18px;
             animation: floatUp linear infinite;
             bottom: -30px;
+            will-change: transform, opacity;
         }
 
         @keyframes floatUp {
@@ -65,21 +80,23 @@
 
         .container {
             width: 100%;
-            max-width: 380px;
+            max-width: 420px;
             z-index: 10;
             position: relative;
         }
 
         /* 🔒 1. شاشة الباسورد */
         #login-screen {
-            background: rgba(27, 13, 46, 0.85);
-            border: 1px solid rgba(255, 102, 153, 0.25);
+            background: var(--card-bg);
+            border: 1px solid var(--border-pink);
             border-radius: 28px;
             padding: 30px 20px;
             text-align: center;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
             backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             margin-top: 30px;
+            transition: var(--transition-smooth);
         }
 
         /* 🔴 صورة الأفاتار الدائرية فوق الباسورد */
@@ -88,8 +105,8 @@
             height: 85px;
             border-radius: 50%;
             margin: 0 auto 15px auto;
-            border: 3px solid #ff4d88;
-            box-shadow: 0 0 15px rgba(255, 77, 136, 0.5);
+            border: 3px solid var(--accent-pink);
+            box-shadow: 0 0 15px var(--accent-pink-glow);
             overflow: hidden;
             background: #230f3c;
             display: flex;
@@ -107,12 +124,12 @@
             font-size: 24px;
             font-weight: 700;
             margin-bottom: 8px;
-            color: #ffffff;
+            color: var(--text-main);
         }
 
         .login-subtitle {
             font-size: 13px;
-            color: #d8c3f1;
+            color: var(--text-muted);
             margin-bottom: 20px;
             line-height: 1.5;
         }
@@ -129,6 +146,12 @@
             outline: none;
             margin-bottom: 18px;
             letter-spacing: 2px;
+            transition: var(--transition-smooth);
+        }
+
+        .pass-input:focus {
+            border-color: var(--accent-pink);
+            box-shadow: 0 0 10px var(--accent-pink-glow);
         }
 
         .pass-btn {
@@ -136,7 +159,7 @@
             padding: 14px;
             border-radius: 22px;
             border: none;
-            background: linear-gradient(135deg, #e6005c, #ff4d88);
+            background: linear-gradient(135deg, #e6005c, var(--accent-pink));
             color: white;
             font-size: 16px;
             font-weight: bold;
@@ -146,6 +169,11 @@
             align-items: center;
             justify-content: center;
             gap: 8px;
+            transition: var(--transition-smooth);
+        }
+
+        .pass-btn:active {
+            transform: scale(0.98);
         }
 
         /* ⏳ 2. شاشة التحميل */
@@ -158,6 +186,7 @@
             text-align: center;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
             backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             margin-top: 40px;
         }
 
@@ -165,7 +194,7 @@
             width: 50px;
             height: 50px;
             border: 4px solid rgba(255, 77, 136, 0.2);
-            border-top: 4px solid #ff4d88;
+            border-top: 4px solid var(--accent-pink);
             border-radius: 50%;
             animation: spin 1s linear infinite;
             margin: 0 auto 20px auto;
@@ -179,7 +208,7 @@
         .loader-text {
             font-size: 18px;
             font-weight: bold;
-            color: #ffffff;
+            color: var(--text-main);
             margin-bottom: 8px;
         }
 
@@ -194,8 +223,8 @@
         }
 
         .header-card {
-            background: rgba(27, 13, 46, 0.8);
-            border: 1px solid rgba(255, 102, 153, 0.2);
+            background: var(--card-bg);
+            border: 1px solid var(--border-pink);
             border-radius: 25px;
             padding: 20px 15px;
             text-align: center;
@@ -217,7 +246,7 @@
         .user-name {
             font-size: 30px;
             font-weight: 800;
-            color: #ffffff;
+            color: var(--text-main);
             letter-spacing: 1px;
             margin-bottom: 12px;
         }
@@ -230,8 +259,8 @@
 
         /* كروت التواريخ */
         .info-box {
-            background: rgba(27, 13, 46, 0.8);
-            border: 1px solid rgba(255, 102, 153, 0.2);
+            background: var(--card-bg);
+            border: 1px solid var(--border-pink);
             border-radius: 20px;
             padding: 14px 18px;
             margin-bottom: 15px;
@@ -256,14 +285,14 @@
             padding: 6px 12px;
             display: inline-block;
             font-size: 13px;
-            color: #ffffff;
+            color: var(--text-main);
             letter-spacing: 1px;
         }
 
         /* العداد المباشر */
         .timer-card {
-            background: rgba(27, 13, 46, 0.8);
-            border: 1px solid rgba(255, 102, 153, 0.2);
+            background: var(--card-bg);
+            border: 1px solid var(--border-pink);
             border-radius: 22px;
             padding: 16px;
             margin-bottom: 15px;
@@ -287,12 +316,12 @@
         .timer-num {
             font-size: 20px;
             font-weight: bold;
-            color: #ffffff;
+            color: var(--text-main);
         }
 
         .timer-label {
             font-size: 11px;
-            color: #b39ddb;
+            color: var(--text-sub);
             margin-top: 2px;
         }
 
@@ -312,7 +341,7 @@
 
         .pill-btn {
             background: rgba(27, 13, 46, 0.7);
-            border: 1px solid rgba(255, 102, 153, 0.25);
+            border: 1px solid var(--border-pink);
             border-radius: 18px;
             padding: 12px;
             text-align: center;
@@ -323,6 +352,12 @@
             align-items: center;
             justify-content: center;
             gap: 8px;
+            transition: var(--transition-smooth);
+        }
+
+        .pill-btn:hover {
+            background: rgba(255, 77, 136, 0.15);
+            border-color: var(--accent-pink);
         }
 
         .grid-title {
@@ -342,7 +377,7 @@
 
         .card-box {
             background: rgba(35, 15, 60, 0.85);
-            border: 1px solid rgba(255, 102, 153, 0.25);
+            border: 1px solid var(--border-pink);
             border-radius: 18px;
             padding: 25px 10px;
             text-align: center;
@@ -352,14 +387,20 @@
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: var(--transition-smooth);
             box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            user-select: none;
+        }
+
+        .card-box:hover:not(.opened) {
+            transform: translateY(-3px);
+            border-color: var(--accent-pink);
         }
 
         .card-icon {
             font-size: 22px;
             margin-bottom: 6px;
-            color: #ff4d88;
+            color: var(--accent-pink);
         }
 
         .card-label {
@@ -369,31 +410,40 @@
 
         .card-box.opened {
             background: rgba(255, 77, 136, 0.2);
-            border-color: #ff4d88;
+            border-color: var(--accent-pink);
+            cursor: default;
+            animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+
+        @keyframes popIn {
+            0% { transform: scale(0.9); opacity: 0.8; }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); opacity: 1; }
         }
 
         .card-box.opened .card-label {
             font-size: 13px;
             font-weight: bold;
-            color: #ffffff;
+            color: var(--text-main);
             line-height: 1.4;
         }
 
         .section-header {
             font-size: 16px;
-            color: #ffffff;
+            color: var(--text-main);
             text-align: center;
             margin: 25px 0 15px 0;
             font-weight: bold;
         }
 
         .photo-card {
-            background: rgba(27, 13, 46, 0.85);
-            border: 1px solid rgba(255, 102, 153, 0.25);
+            background: var(--card-bg);
+            border: 1px solid var(--border-pink);
             border-radius: 22px;
             overflow: hidden;
             margin-bottom: 18px;
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+            transition: var(--transition-smooth);
         }
 
         .photo-card img {
@@ -402,6 +452,7 @@
             max-height: 350px;
             object-fit: cover;
             display: block;
+            background: #2a1040;
         }
 
         .photo-caption {
@@ -417,7 +468,7 @@
             border-radius: 22px;
             border: 1px solid rgba(255, 102, 153, 0.4);
             background: rgba(255, 77, 136, 0.15);
-            color: #ffffff;
+            color: var(--text-main);
             font-size: 14px;
             font-weight: bold;
             cursor: pointer;
@@ -426,7 +477,13 @@
             align-items: center;
             justify-content: center;
             gap: 8px;
-            box-shadow: 0 0 15px rgba(255, 77, 136, 0.2);
+            box-shadow: 0 0 15px var(--accent-pink-glow);
+            transition: var(--transition-smooth);
+        }
+
+        .final-btn:hover {
+            background: rgba(255, 77, 136, 0.25);
+            border-color: var(--accent-pink);
         }
 
         .footer-credit {
@@ -449,18 +506,32 @@
             align-items: center;
             padding: 20px;
             backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+            opacity: 1;
         }
 
         .modal-box {
             background: #1e0a30;
-            border: 1px solid #ff4d88;
+            border: 1px solid var(--accent-pink);
             border-radius: 24px;
             padding: 25px 20px;
-            max-width: 320px;
+            max-width: 340px;
             width: 100%;
             text-align: center;
-            box-shadow: 0 0 30px rgba(255, 77, 136, 0.4);
+            box-shadow: 0 0 30px var(--accent-pink-glow);
             position: relative;
+            transform: scale(0.8);
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .modal-overlay.active .modal-box {
+            transform: scale(1);
         }
 
         .close-icon {
@@ -470,6 +541,11 @@
             color: #aaaaaa;
             font-size: 18px;
             cursor: pointer;
+            transition: var(--transition-smooth);
+        }
+
+        .close-icon:hover {
+            color: var(--text-main);
         }
 
         .modal-mail-icon {
@@ -481,14 +557,14 @@
             align-items: center;
             justify-content: center;
             margin: 0 auto 12px auto;
-            color: #ff4d88;
+            color: var(--accent-pink);
             font-size: 20px;
         }
 
         .modal-name {
             font-size: 18px;
             font-weight: bold;
-            color: #ffffff;
+            color: var(--text-main);
             margin-bottom: 12px;
         }
 
@@ -507,16 +583,264 @@
             border-radius: 12px;
             font-size: 13px;
             cursor: pointer;
+            transition: var(--transition-smooth);
         }
 
+        .modal-close-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        /* التحديثات المشتركة للأقسام الجديدة */
+        .app-section {
+            background: var(--card-bg);
+            border: 1px solid var(--border-pink);
+            border-radius: 22px;
+            padding: 18px;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        .app-section-title {
+            font-size: 15px;
+            color: #ff99c2;
+            text-align: center;
+            margin-bottom: 14px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .app-input-group {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+
+        .app-input {
+            flex: 1;
+            padding: 10px 14px;
+            border-radius: 14px;
+            border: 1px solid rgba(255, 102, 153, 0.3);
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-main);
+            font-size: 13px;
+            outline: none;
+            transition: var(--transition-smooth);
+        }
+
+        .app-input:focus {
+            border-color: var(--accent-pink);
+        }
+
+        .app-btn {
+            background: var(--accent-pink);
+            border: none;
+            color: white;
+            padding: 0 16px;
+            border-radius: 14px;
+            font-size: 13px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .app-btn:hover {
+            opacity: 0.9;
+        }
+
+        .app-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            max-height: 250px;
+            overflow-y: auto;
+            padding-left: 4px;
+        }
+
+        .app-list::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        .app-list::-webkit-scrollbar-thumb {
+            background: rgba(255, 77, 136, 0.3);
+            border-radius: 4px;
+        }
+
+        .app-item {
+            background: rgba(45, 20, 75, 0.5);
+            border: 1px solid rgba(255, 102, 153, 0.15);
+            border-radius: 14px;
+            padding: 10px 12px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            transition: var(--transition-smooth);
+            animation: fadeIn 0.3s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .app-item-content {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex: 1;
+            cursor: pointer;
+            word-break: break-word;
+            font-size: 13px;
+        }
+
+        .app-item.completed .app-item-content span {
+            text-decoration: line-through;
+            color: #b39ddb;
+            opacity: 0.7;
+        }
+
+        .app-actions {
+            display: flex;
+            gap: 6px;
+        }
+
+        .action-icon-btn {
+            background: none;
+            border: none;
+            color: #b39ddb;
+            cursor: pointer;
+            font-size: 14px;
+            padding: 4px;
+            transition: var(--transition-smooth);
+        }
+
+        .action-icon-btn:hover {
+            color: var(--accent-pink);
+        }
+
+        .action-icon-btn.delete:hover {
+            color: #ff4d4d;
+        }
+
+        /* شريط التقدم */
+        .progress-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-pink);
+            border-radius: 20px;
+            padding: 16px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .progress-text {
+            font-size: 13px;
+            color: var(--text-main);
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .progress-bar-container {
+            width: 100%;
+            height: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 102, 153, 0.2);
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #e6005c, var(--accent-pink));
+            width: 0%;
+            transition: width 0.5s ease;
+            border-radius: 10px;
+        }
+
+        /* ألبوم الصور الجديد */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-top: 10px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 14px;
+            overflow: hidden;
+            aspect-ratio: 1;
+            border: 1px solid var(--border-pink);
+            background: #230f3c;
+            cursor: pointer;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .gallery-delete {
+            position: absolute;
+            top: 6px;
+            left: 6px;
+            background: rgba(0, 0, 0, 0.6);
+            color: #ff4d4d;
+            border: none;
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+        }
+
+        .gallery-delete:hover {
+            background: #ff4d4d;
+            color: white;
+        }
+
+        .upload-dropzone {
+            border: 2px dashed rgba(255, 77, 136, 0.4);
+            border-radius: 16px;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            background: rgba(255, 77, 136, 0.03);
+            transition: var(--transition-smooth);
+            margin-bottom: 12px;
+        }
+
+        .upload-dropzone:hover {
+            background: rgba(255, 77, 136, 0.08);
+            border-color: var(--accent-pink);
+        }
+
+        /* مشغل الصوت السفلي */
         .bottom-audio-player {
             position: fixed;
             bottom: 15px;
             left: 50%;
             transform: translateX(-50%);
             width: 90%;
-            max-width: 350px;
-            background: rgba(20, 8, 35, 0.92);
+            max-width: 380px;
+            background: rgba(20, 8, 35, 0.95);
             border: 1px solid rgba(255, 102, 153, 0.3);
             border-radius: 30px;
             padding: 8px 16px;
@@ -526,6 +850,7 @@
             z-index: 90;
             box-shadow: 0 5px 20px rgba(0,0,0,0.6);
             backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
         }
 
         .player-info {
@@ -536,22 +861,22 @@
 
         .player-icon {
             font-size: 14px;
-            color: #ff4d88;
+            color: var(--accent-pink);
         }
 
         .player-text {
             font-size: 12px;
-            color: #ffffff;
+            color: var(--text-main);
             font-weight: 500;
         }
 
         .player-sub {
             font-size: 9px;
-            color: #b39ddb;
+            color: var(--text-sub);
         }
 
         .play-pause-btn {
-            background: #ff4d88;
+            background: var(--accent-pink);
             border: none;
             width: 32px;
             height: 32px;
@@ -562,6 +887,11 @@
             justify-content: center;
             cursor: pointer;
             font-size: 12px;
+            transition: var(--transition-smooth);
+        }
+
+        .play-pause-btn:active {
+            transform: scale(0.9);
         }
     </style>
 </head>
@@ -579,13 +909,13 @@
         
         <div id="login-screen">
             <div class="avatar-box">
-                <img src="avatar.jpg" onerror="this.src='https://via.placeholder.com/100/230f3c/ff4d88?text=❤️'">
+                <img src="avatar.jpg" alt="Avatar" loading="lazy" onerror="this.src='https://via.placeholder.com/100/230f3c/ff4d88?text=❤️'">
             </div>
             
             <div class="login-title">جاهزة؟ 🤔</div>
             <div class="login-subtitle">كل الي هنا هيفضل بيني وبينك طول العمر ❤️</div>
-            <input type="password" id="passInput" class="pass-input" placeholder="l o v e | الباسورد">
-            <button class="pass-btn" onclick="checkPassword()">
+            <input type="password" id="passInput" class="pass-input" placeholder="l o v e | الباسورد" autocomplete="current-password">
+            <button class="pass-btn" id="loginBtn">
                 <span>يلا بسرعة افتحي</span> 😉❤️
             </button>
         </div>
@@ -611,7 +941,7 @@
 
             <div class="timer-card">
                 <div class="info-title">❤️ بداية عمري معاكي</div>
-                <div style="font-size: 11px; color: #b39ddb; margin-bottom: 5px;">هيفضل شغال طول ما احنا مع بعض 🕒</div>
+                <div style="font-size: 11px; color: var(--text-sub); margin-bottom: 5px;">هيفضل شغال طول ما احنا مع بعض 🕒</div>
                 
                 <div class="timer-grid">
                     <div class="timer-item">
@@ -651,67 +981,176 @@
 
             <div class="grid-title">دوسى على الكروت 😉❤️</div>
             <div class="cards-grid">
-                <div class="card-box" onclick="openCard(this, 'محبتش')">
+                <div class="card-box" data-card-text="محبتش">
                     <div class="card-icon">♡</div>
                     <div class="card-label">اول كارت اهوووو 😂🥳</div>
                 </div>
-                <div class="card-box" onclick="openCard(this, 'ولا بحب')">
+                <div class="card-box" data-card-text="ولا بحب">
                     <div class="card-icon">♡</div>
                     <div class="card-label">التاني</div>
                 </div>
-                <div class="card-box" onclick="openCard(this, 'ولا هحب حد')">
+                <div class="card-box" data-card-text="ولا هحب حد">
                     <div class="card-icon">♡</div>
                     <div class="card-label">التالت</div>
                 </div>
-                <div class="card-box" onclick="openCard(this, 'زي ما حبيتك يا اجمل حاجة ف حياتي ❤️')">
+                <div class="card-box" data-card-text="زي ما حبيتك يا اجمل حاجة ف حياتي ❤️">
                     <div class="card-icon">♡</div>
                     <div class="card-label">الرابع</div>
                 </div>
             </div>
 
+            <!-- ❤️ قائمة أحلامنا معًا (Bucket List) -->
+            <div class="app-section">
+                <div class="app-section-title">❤️ قائمة أحلامنا معًا ❤️</div>
+                <div class="app-input-group">
+                    <input type="text" id="bucketInput" class="app-input" placeholder="أضف حلماً جديداً...">
+                    <button class="app-btn" id="addBucketBtn">إضافة</button>
+                </div>
+                <div class="app-list" id="bucketList"></div>
+            </div>
+
+            <!-- 🎯 أهدافنا -->
+            <div class="app-section">
+                <div class="app-section-title">🎯 أهدافنا المشتركة</div>
+                <div class="app-input-group">
+                    <input type="text" id="goalInput" class="app-input" placeholder="أضف هدفاً جديداً...">
+                    <button class="app-btn" id="addGoalBtn">إضافة</button>
+                </div>
+                <div class="app-list" id="goalList"></div>
+            </div>
+
+            <!-- 📊 شريط التقدم الإجمالي -->
+            <div class="progress-card">
+                <div class="progress-text" id="progressText">❤️ أنجزنا 0 من أصل 0 (0%)</div>
+                <div class="progress-bar-container">
+                    <div class="progress-bar-fill" id="progressBarFill"></div>
+                </div>
+            </div>
+
+            <!-- 📸 ألبوم ذكرياتنا -->
+            <div class="app-section">
+                <div class="app-section-title">📸 ألبوم ذكرياتنا</div>
+                <div class="upload-dropzone" id="dropZone">
+                    <span>اسحب الصور هنا أو اضغط لرفع صور جديدة 🖼️</span>
+                    <input type="file" id="imageUploadInput" accept="image/*" multiple style="display: none;">
+                </div>
+                <div class="gallery-grid" id="galleryGrid"></div>
+            </div>
+
+            <!-- 💌 رسائلنا -->
+            <div class="app-section">
+                <div class="app-section-title">💌 رسائلنا الخاصة</div>
+                <div class="app-input-group">
+                    <input type="text" id="messageInput" class="app-input" placeholder="اكتب رسالة حب رومانسية...">
+                    <button class="app-btn" id="addMessageBtn">حفظ</button>
+                </div>
+                <div class="app-list" id="messageList"></div>
+            </div>
+
+            <!-- 📅 مناسباتنا -->
+            <div class="app-section">
+                <div class="app-section-title">📅 مناسباتنا السعيدة</div>
+                <div class="app-input-group" style="flex-direction: column;">
+                    <input type="text" id="eventTitleInput" class="app-input" placeholder="اسم المناسبة (مثال: عيد ميلادك)" style="width: 100%;">
+                    <div style="display: flex; gap: 8px; width: 100%;">
+                        <input type="date" id="eventDateInput" class="app-input" style="width: 100%;">
+                        <button class="app-btn" id="addEventBtn">إضافة</button>
+                    </div>
+                </div>
+                <div class="app-list" id="eventList"></div>
+            </div>
+
+            <!-- 🎁 Wishlist -->
+            <div class="app-section">
+                <div class="app-section-title">🎁 Wishlist الهدايا</div>
+                <div class="app-input-group">
+                    <input type="text" id="wishInput" class="app-input" placeholder="هدية نتمنى شرائها...">
+                    <button class="app-btn" id="addWishBtn">إضافة</button>
+                </div>
+                <div class="app-list" id="wishList"></div>
+            </div>
+
+            <!-- 📍 الأماكن التي زرناها -->
+            <div class="app-section">
+                <div class="app-section-title">📍 الأماكن التي زرناها</div>
+                <div class="app-input-group" style="flex-direction: column;">
+                    <input type="text" id="placeTitleInput" class="app-input" placeholder="اسم المكان" style="width: 100%;">
+                    <div style="display: flex; gap: 8px; width: 100%;">
+                        <input type="text" id="placeNoteInput" class="app-input" placeholder="ملاحظة بسيطة..." style="width: 100%;">
+                        <button class="app-btn" id="addPlaceBtn">إضافة</button>
+                    </div>
+                </div>
+                <div class="app-list" id="placeList"></div>
+            </div>
+
+            <!-- 🎵 أغانينا -->
+            <div class="app-section">
+                <div class="app-section-title">🎵 أغانينا المفضلة</div>
+                <div class="app-input-group" style="flex-direction: column;">
+                    <input type="text" id="songTitleInput" class="app-input" placeholder="اسم الأغنية" style="width: 100%;">
+                    <div style="display: flex; gap: 8px; width: 100%;">
+                        <input type="url" id="songUrlInput" class="app-input" placeholder="رابط الأغنية (URL)" style="width: 100%;">
+                        <button class="app-btn" id="addSongBtn">إضافة</button>
+                    </div>
+                </div>
+                <div class="app-list" id="songList"></div>
+            </div>
+
+            <!-- 💖 رسالة اليوم -->
+            <div class="app-section" style="text-align: center;">
+                <div class="app-section-title">💖 رسالة اليوم لكي</div>
+                <div id="dailyLoveMessage" style="font-size: 14px; color: #ffe6ee; line-height: 1.6; padding: 10px;"></div>
+            </div>
+
+            <!-- ⏳ Timeline زمني -->
+            <div class="app-section">
+                <div class="app-section-title">⏳ شريط ذكرياتنا الزمني</div>
+                <div class="app-list" id="timelineList"></div>
+            </div>
+
             <div class="section-header">👈 حياتي باختصار هنا</div>
 
             <div class="photo-card">
-                <img src="img1.jpg" onerror="this.src='https://via.placeholder.com/400x300/2a1040/ff4d88?text=بحبك+يا+نورعيني'">
+                <img src="img1.jpg" alt="Memory 1" loading="lazy" onerror="this.src='https://via.placeholder.com/400x300/2a1040/ff4d88?text=بحبك+يا+نورعيني'">
                 <div class="photo-caption">بحبك يا نورعيني ❤️</div>
             </div>
 
             <div class="photo-card">
-                <img src="img2.jpg" onerror="this.src='https://via.placeholder.com/400x300/2a1040/ff4d88?text=كل+لحظة+في+عمري'">
+                <img src="img2.jpg" alt="Memory 2" loading="lazy" onerror="this.src='https://via.placeholder.com/400x300/2a1040/ff4d88?text=كل+لحظة+في+عمري'">
                 <div class="photo-caption">كل لحظة في عمري بتمنى تكون معاكي ❤️</div>
             </div>
 
             <div class="photo-card">
-                <img src="img3.jpg" onerror="this.src='https://via.placeholder.com/400x300/2a1040/ff4d88?text=كل+سنة+واحنا+مع+بعض'">
+                <img src="img3.jpg" alt="Memory 3" loading="lazy" onerror="this.src='https://via.placeholder.com/400x300/2a1040/ff4d88?text=كل+سنة+واحنا+مع+بعض'">
                 <div class="photo-caption">كل سنة واحنا مع بعض ❤️</div>
             </div>
 
             <div class="photo-card">
-                <img src="img4.jpg" onerror="this.src='https://via.placeholder.com/400x300/2a1040/ff4d88?text=انا+والقمر'">
+                <img src="img4.jpg" alt="Memory 4" loading="lazy" onerror="this.src='https://via.placeholder.com/400x300/2a1040/ff4d88?text=انا+والقمر'">
                 <div class="photo-caption">انا والقمر 😋❤️</div>
             </div>
 
             <div class="photo-card">
-                <img src="img5.jpg" onerror="this.src='https://via.placeholder.com/400x300/2a1040/ff4d88?text=عمري+ماكنت+مبسوط'">
+                <img src="img5.jpg" alt="Memory 5" loading="lazy" onerror="this.src='https://via.placeholder.com/400x300/2a1040/ff4d88?text=عمري+ماكنت+مبسوط'">
                 <div class="photo-caption">عمري ماكنت مبسوط زي ما انا معاكي ❤️</div>
             </div>
 
             <div class="photo-card">
-                <img src="img6.jpg" onerror="this.src='https://via.placeholder.com/400x300/2a1040/ff4d88?text=الي+قاعدة+ف+قلبي'">
+                <img src="img6.jpg" alt="Memory 6" loading="lazy" onerror="this.src='https://via.placeholder.com/400x300/2a1040/ff4d88?text=الي+قاعدة+ف+قلبي'">
                 <div class="photo-caption">الي قاعدة ف قلبي ومرحرحة 😂❤️</div>
             </div>
 
             <div class="photo-card">
-                <img src="img7.jpg" onerror="this.src='https://via.placeholder.com/400x300/2a1040/ff4d88?text=في+قمر+كذا'">
+                <img src="img7.jpg" alt="Memory 7" loading="lazy" onerror="this.src='https://via.placeholder.com/400x300/2a1040/ff4d88?text=في+قمر+كذا'">
                 <div class="photo-caption">في قمر كدا ؟ 🤔❤️</div>
             </div>
 
             <div class="photo-card">
-                <img src="img8.jpg" onerror="this.src='https://via.placeholder.com/400x300/2a1040/ff4d88?text=بحبك'">
+                <img src="img8.jpg" alt="Memory 8" loading="lazy" onerror="this.src='https://via.placeholder.com/400x300/2a1040/ff4d88?text=بحبك'">
                 <div class="photo-caption">بحبك ❤️</div>
             </div>
 
-            <button class="final-btn" onclick="showModal()">
+            <button class="final-btn" id="modalOpenBtn">
                 🔒🥳 لسه مخلصتش دوسي هنا
             </button>
 
@@ -723,13 +1162,13 @@
 
     <div class="modal-overlay" id="messageModal">
         <div class="modal-box">
-            <span class="close-icon" onclick="closeModal()">✕</span>
+            <span class="close-icon" id="modalCloseIcon">✕</span>
             <div class="modal-mail-icon">✉️</div>
             <div class="modal-name">Asmaa</div>
             <div class="modal-body-text">
                 ربنا يخليكي ليا ومايحرمنيش منك ابدا يا روح قلبي ويارب العمر كله مع بعض ❤️
             </div>
-            <button class="modal-close-btn" onclick="closeModal()">إغلاق</button>
+            <button class="modal-close-btn" id="modalCloseBtn">إغلاق</button>
         </div>
     </div>
 
@@ -741,118 +1180,667 @@
                 <div class="player-sub">تشغيل الآن •</div>
             </div>
         </div>
-        <button class="play-pause-btn" onclick="toggleAudio()" id="playBtn">❚❚</button>
+        <button class="play-pause-btn" id="playBtn" aria-label="تشغيل أو إيقاف الصوت">❚❚</button>
     </div>
 
     <script>
-        function checkPassword() {
-            const input = document.getElementById('passInput').value.trim().toLowerCase();
-            if (input === 'love' || input === 'حب') {
-                document.getElementById('login-screen').style.display = 'none';
-                document.getElementById('loader-screen').style.display = 'block';
+        document.addEventListener('DOMContentLoaded', () => {
+            // دوال التعامل مع البيانات المحلية LocalStorage بأمان
+            const Storage = {
+                get(key, defaultVal) {
+                    try {
+                        const item = localStorage.getItem('asmaa_love_' + key);
+                        return item ? JSON.parse(item) : defaultVal;
+                    } catch (e) {
+                        return defaultVal;
+                    }
+                },
+                set(key, val) {
+                    try {
+                        localStorage.setItem('asmaa_love_' + key, JSON.stringify(val));
+                    } catch (e) {}
+                }
+            };
 
-                setTimeout(() => {
-                    document.getElementById('loader-text').innerText = 'ثواني ياروحي ❤️';
-                    document.getElementById('loader-subtext').innerText = 'بنجهزلك مفاجأة صغيرة...';
-                }, 1200);
+            // شاشة تسجيل الدخول
+            const passInput = document.getElementById('passInput');
+            const loginBtn = document.getElementById('loginBtn');
 
-                setTimeout(() => {
-                    document.getElementById('loader-screen').style.display = 'none';
-                    document.getElementById('main-content').style.display = 'block';
-                    document.getElementById('audioBar').style.display = 'flex';
-                    
-                    playAudio();
-                    startLiveCounter();
-                }, 2800);
+            function handleLogin() {
+                const input = passInput.value.trim().toLowerCase();
+                if (input === 'love' || input === 'حب') {
+                    document.getElementById('login-screen').style.display = 'none';
+                    document.getElementById('loader-screen').style.display = 'block';
 
-            } else {
-                alert('الباسورد غلط يا روحي! جربي love 😉');
+                    setTimeout(() => {
+                        const loaderText = document.getElementById('loader-text');
+                        const loaderSubtext = document.getElementById('loader-subtext');
+                        if (loaderText) loaderText.innerText = 'ثواني ياروحي ❤️';
+                        if (loaderSubtext) loaderSubtext.innerText = 'بنجهزلك مفاجأة صغيرة...';
+                    }, 1200);
+
+                    setTimeout(() => {
+                        document.getElementById('loader-screen').style.display = 'none';
+                        document.getElementById('main-content').style.display = 'block';
+                        document.getElementById('audioBar').style.display = 'flex';
+                        
+                        playAudio();
+                        startLiveCounter();
+                        initAllFeatures();
+                    }, 2800);
+
+                } else {
+                    alert('الباسورد غلط يا روحي! جربي love 😉');
+                }
             }
-        }
 
-        const audio = document.getElementById('loveSong');
-        const playBtn = document.getElementById('playBtn');
+            if (loginBtn) loginBtn.addEventListener('click', handleLogin);
+            if (passInput) {
+                passInput.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') handleLogin();
+                });
+            }
 
-        function playAudio() {
-            audio.play().then(() => {
-                playBtn.innerText = '❚❚';
-            }).catch(err => {
-                console.log("Audio play error: ", err);
-                playBtn.innerText = '▶';
+            // تشغيل الصوت
+            const audio = document.getElementById('loveSong');
+            const playBtn = document.getElementById('playBtn');
+
+            function playAudio() {
+                if (!audio) return;
+                audio.play().then(() => {
+                    if (playBtn) playBtn.innerText = '❚❚';
+                }).catch(err => {
+                    if (playBtn) playBtn.innerText = '▶';
+                });
+            }
+
+            if (playBtn) {
+                playBtn.addEventListener('click', () => {
+                    if (!audio) return;
+                    if (audio.paused) {
+                        audio.play();
+                        playBtn.innerText = '❚❚';
+                    } else {
+                        audio.pause();
+                        playBtn.innerText = '▶';
+                    }
+                });
+            }
+
+            // الكروت التفاعلية
+            document.querySelectorAll('.card-box').forEach(card => {
+                card.addEventListener('click', function() {
+                    if (this.classList.contains('opened')) return;
+                    const text = this.getAttribute('data-card-text');
+                    this.innerHTML = '<div class="card-label">' + text + '</div>';
+                    this.classList.add('opened');
+                });
             });
-        }
 
-        function toggleAudio() {
-            if (audio.paused) {
-                audio.play();
-                playBtn.innerText = '❚❚';
-            } else {
-                audio.pause();
-                playBtn.innerText = '▶';
+            // Modal
+            const modal = document.getElementById('messageModal');
+            const modalOpenBtn = document.getElementById('modalOpenBtn');
+            const modalCloseBtn = document.getElementById('modalCloseBtn');
+            const modalCloseIcon = document.getElementById('modalCloseIcon');
+
+            function showModal() {
+                if (modal) modal.classList.add('active');
             }
-        }
 
-        function openCard(element, text) {
-            element.innerHTML = '<div class="card-label">' + text + '</div>';
-            element.classList.add('opened');
-        }
+            function closeModal() {
+                if (modal) modal.classList.remove('active');
+            }
 
-        function showModal() {
-            document.getElementById('messageModal').style.display = 'flex';
-        }
+            if (modalOpenBtn) modalOpenBtn.addEventListener('click', showModal);
+            if (modalCloseBtn) modalCloseBtn.addEventListener('click', closeModal);
+            if (modalCloseIcon) modalCloseIcon.addEventListener('click', closeModal);
+            if (modal) {
+                modal.addEventListener('click', (e) => {
+                    if (e.target === modal) closeModal();
+                });
+            }
 
-        function closeModal() {
-            document.getElementById('messageModal').style.display = 'none';
-        }
+            // العداد المباشر الحقيقي
+            function startLiveCounter() {
+                const startDate = new Date('2023-03-30T00:00:00');
 
-        function startLiveCounter() {
-            // تاريخ بداية العلاقة: 30 مارس 2023
-            const startDate = new Date('2023-03-30T00:00:00');
+                setInterval(() => {
+                    const now = new Date();
+                    
+                    let years = now.getFullYear() - startDate.getFullYear();
+                    let months = now.getMonth() - startDate.getMonth();
+                    let days = now.getDate() - startDate.getDate();
 
-            setInterval(() => {
-                const now = new Date();
+                    if (days < 0) {
+                        months--;
+                        const prevMonth = new Date(now.getFullYear(), now.getMonth(), 0);
+                        days += prevMonth.getDate();
+                    }
+                    if (months < 0) {
+                        years--;
+                        months += 12;
+                    }
+
+                    const diffHours = now.getHours();
+                    const diffMins = now.getMinutes();
+                    const diffSecs = now.getSeconds();
+
+                    const yEl = document.getElementById('t-years');
+                    const mEl = document.getElementById('t-months');
+                    const dEl = document.getElementById('t-days');
+                    const hEl = document.getElementById('t-hours');
+                    const minEl = document.getElementById('t-mins');
+                    const sEl = document.getElementById('t-secs');
+
+                    if (yEl) yEl.innerText = Math.max(0, years);
+                    if (mEl) mEl.innerText = Math.max(0, months);
+                    if (dEl) dEl.innerText = Math.max(0, days);
+                    if (hEl) hEl.innerText = diffHours;
+                    if (minEl) minEl.innerText = diffMins;
+                    if (sEl) sEl.innerText = diffSecs;
+                }, 1000);
+            }
+
+            // القلوب الطائرة المتحركة المستمرة
+            function createHearts() {
+                const container = document.getElementById('heartContainer');
+                if (!container) return;
                 
-                let years = now.getFullYear() - startDate.getFullYear();
-                let months = now.getMonth() - startDate.getMonth();
-                let days = now.getDate() - startDate.getDate();
-
-                if (days < 0) {
-                    months--;
-                    const prevMonth = new Date(now.getFullYear(), now.getMonth(), 0);
-                    days += prevMonth.getDate();
+                for(let i=0; i<18; i++) {
+                    const heart = document.createElement('div');
+                    heart.classList.add('heart-particle');
+                    heart.innerHTML = '❤️';
+                    heart.style.left = Math.random() * 100 + 'vw';
+                    heart.style.animationDuration = (Math.random() * 3 + 4) + 's';
+                    heart.style.animationDelay = Math.random() * 5 + 's';
+                    container.appendChild(heart);
                 }
-                if (months < 0) {
-                    years--;
-                    months += 12;
-                }
-
-                const diffHours = now.getHours();
-                const diffMins = now.getMinutes();
-                const diffSecs = now.getSeconds();
-
-                document.getElementById('t-years').innerText = Math.max(0, years);
-                document.getElementById('t-months').innerText = Math.max(0, months);
-                document.getElementById('t-days').innerText = Math.max(0, days);
-                document.getElementById('t-hours').innerText = diffHours;
-                document.getElementById('t-mins').innerText = diffMins;
-                document.getElementById('t-secs').innerText = diffSecs;
-            }, 1000);
-        }
-
-        function createHearts() {
-            const container = document.getElementById('heartContainer');
-            for(let i=0; i<25; i++) {
-                const heart = document.createElement('div');
-                heart.classList.add('heart-particle');
-                heart.innerHTML = '❤️';
-                heart.style.left = Math.random() * 100 + 'vw';
-                heart.style.animationDuration = (Math.random() * 3 + 4) + 's';
-                heart.style.animationDelay = Math.random() * 5 + 's';
-                container.appendChild(heart);
             }
-        }
-        createHearts();
+            createHearts();
+
+            // الوظائف والإضافات الجديدة بالكامل مع حفظ البيانات
+            function initAllFeatures() {
+                // 1. قائمة أحلامنا معًا (Bucket List)
+                const defaultBuckets = [
+                    { id: 1, text: 'سفرية رومانسي مع بعض', completed: false },
+                    { id: 2, text: 'حضور فيلم في السينما وحدنا', completed: true }
+                ];
+                let buckets = Storage.get('buckets', defaultBuckets);
+
+                const bucketListEl = document.getElementById('bucketList');
+                const bucketInput = document.getElementById('bucketInput');
+                const addBucketBtn = document.getElementById('addBucketBtn');
+
+                function renderBuckets() {
+                    if (!bucketListEl) return;
+                    bucketListEl.innerHTML = '';
+                    buckets.forEach((item, index) => {
+                        const div = document.createElement('div');
+                        div.className = `app-item ${item.completed ? 'completed' : ''}`;
+                        div.innerHTML = `
+                            <div class="app-item-content" data-action="toggle-bucket" data-index="${index}">
+                                <span>${item.completed ? '❤️ ' : '☐ '} ${escapeHtml(item.text)}</span>
+                            </div>
+                            <div class="app-actions">
+                                <button class="action-icon-btn delete" data-action="delete-bucket" data-index="${index}">🗑️</button>
+                            </div>
+                        `;
+                        bucketListEl.appendChild(div);
+                    });
+                    Storage.set('buckets', buckets);
+                    updateProgress();
+                }
+
+                if (addBucketBtn) {
+                    addBucketBtn.addEventListener('click', () => {
+                        const val = bucketInput.value.trim();
+                        if (val) {
+                            buckets.push({ id: Date.now(), text: val, completed: false });
+                            bucketInput.value = '';
+                            renderBuckets();
+                        }
+                    });
+                }
+
+                if (bucketListEl) {
+                    bucketListEl.addEventListener('click', (e) => {
+                        const target = e.target.closest('[data-action]');
+                        if (!target) return;
+                        const action = target.getAttribute('data-action');
+                        const index = target.getAttribute('data-index');
+                        if (action === 'toggle-bucket') {
+                            buckets[index].completed = !buckets[index].completed;
+                            renderBuckets();
+                        } else if (action === 'delete-bucket') {
+                            buckets.splice(index, 1);
+                            renderBuckets();
+                        }
+                    });
+                }
+                renderBuckets();
+
+                // 2. أهدافنا المشتركة
+                const defaultGoals = [
+                    { id: 1, text: 'نسافر مع بعض مكان جديد', completed: false },
+                    { id: 2, text: 'نروح مطعمنا المفضلة', completed: true },
+                    { id: 3, text: 'نجيب هدية لبعض', completed: false }
+                ];
+                let goals = Storage.get('goals', defaultGoals);
+
+                const goalListEl = document.getElementById('goalList');
+                const goalInput = document.getElementById('goalInput');
+                const addGoalBtn = document.getElementById('addGoalBtn');
+
+                function renderGoals() {
+                    if (!goalListEl) return;
+                    goalListEl.innerHTML = '';
+                    goals.forEach((item, index) => {
+                        const div = document.createElement('div');
+                        div.className = `app-item ${item.completed ? 'completed' : ''}`;
+                        div.innerHTML = `
+                            <div class="app-item-content" data-action="toggle-goal" data-index="${index}">
+                                <span>${item.completed ? '❤️ ' : '☐ '} ${escapeHtml(item.text)}</span>
+                            </div>
+                            <div class="app-actions">
+                                <button class="action-icon-btn delete" data-action="delete-goal" data-index="${index}">🗑️</button>
+                            </div>
+                        `;
+                        goalListEl.appendChild(div);
+                    });
+                    Storage.set('goals', goals);
+                    updateProgress();
+                }
+
+                if (addGoalBtn) {
+                    addGoalBtn.addEventListener('click', () => {
+                        const val = goalInput.value.trim();
+                        if (val) {
+                            goals.push({ id: Date.now(), text: val, completed: false });
+                            goalInput.value = '';
+                            renderGoals();
+                        }
+                    });
+                }
+
+                if (goalListEl) {
+                    goalListEl.addEventListener('click', (e) => {
+                        const target = e.target.closest('[data-action]');
+                        if (!target) return;
+                        const action = target.getAttribute('data-action');
+                        const index = target.getAttribute('data-index');
+                        if (action === 'toggle-goal') {
+                            goals[index].completed = !goals[index].completed;
+                            renderGoals();
+                        } else if (action === 'delete-goal') {
+                            goals.splice(index, 1);
+                            renderGoals();
+                        }
+                    });
+                }
+                renderGoals();
+
+                // 3. شريط التقدم (Progress Bar)
+                function updateProgress() {
+                    const total = buckets.length + goals.length;
+                    const completed = buckets.filter(i => i.completed).length + goals.filter(i => i.completed).length;
+                    const percent = total > 0 ? Math.round((completed / total) * 100) : 0;
+
+                    const progressText = document.getElementById('progressText');
+                    const progressBarFill = document.getElementById('progressBarFill');
+
+                    if (progressText) progressText.innerText = `❤️ أنجزنا ${completed} من أصل ${total} (${percent}%)`;
+                    if (progressBarFill) progressBarFill.style.width = percent + '%';
+                }
+                updateProgress();
+
+                // 4. ألبوم ذكرياتنا (صور محلية ورفع)
+                let galleryImages = Storage.get('gallery', []);
+                const galleryGrid = document.getElementById('galleryGrid');
+                const dropZone = document.getElementById('dropZone');
+                const imageUploadInput = document.getElementById('imageUploadInput');
+
+                function renderGallery() {
+                    if (!galleryGrid) return;
+                    galleryGrid.innerHTML = '';
+                    galleryImages.forEach((imgSrc, index) => {
+                        const div = document.createElement('div');
+                        div.className = 'gallery-item';
+                        div.innerHTML = `
+                            <img src="${imgSrc}" alt="Memory" loading="lazy">
+                            <button class="gallery-delete" data-action="delete-img" data-index="${index}">✕</button>
+                        `;
+                        galleryGrid.appendChild(div);
+                    });
+                    Storage.set('gallery', galleryImages);
+                }
+
+                if (dropZone && imageUploadInput) {
+                    dropZone.addEventListener('click', () => imageUploadInput.click());
+                    imageUploadInput.addEventListener('change', (e) => {
+                        const files = e.target.files;
+                        for (let file of files) {
+                            const reader = new FileReader();
+                            reader.onload = (event) => {
+                                galleryImages.push(event.target.result);
+                                renderGallery();
+                            };
+                            reader.readAsDataURL(file);
+                        }
+                    });
+
+                    dropZone.addEventListener('dragover', (e) => { e.preventDefault(); });
+                    dropZone.addEventListener('drop', (e) => {
+                        e.preventDefault();
+                        const files = e.dataTransfer.files;
+                        for (let file of files) {
+                            const reader = new FileReader();
+                            reader.onload = (event) => {
+                                galleryImages.push(event.target.result);
+                                renderGallery();
+                            };
+                            reader.readAsDataURL(file);
+                        }
+                    });
+                }
+
+                if (galleryGrid) {
+                    galleryGrid.addEventListener('click', (e) => {
+                        const target = e.target.closest('[data-action="delete-img"]');
+                        if (!target) return;
+                        const index = target.getAttribute('data-index');
+                        galleryImages.splice(index, 1);
+                        renderGallery();
+                    });
+                }
+                renderGallery();
+
+                // 5. رسائلنا
+                let messages = Storage.get('messages', [{ text: 'أنتِ أجمل صدفة في حياتي يا أسماء ❤️' }]);
+                const messageListEl = document.getElementById('messageList');
+                const messageInput = document.getElementById('messageInput');
+                const addMessageBtn = document.getElementById('addMessageBtn');
+
+                function renderMessages() {
+                    if (!messageListEl) return;
+                    messageListEl.innerHTML = '';
+                    messages.forEach((item, index) => {
+                        const div = document.createElement('div');
+                        div.className = 'app-item';
+                        div.innerHTML = `
+                            <div class="app-item-content">
+                                <span>💌 ${escapeHtml(item.text)}</span>
+                            </div>
+                            <div class="app-actions">
+                                <button class="action-icon-btn delete" data-action="delete-msg" data-index="${index}">🗑️</button>
+                            </div>
+                        `;
+                        messageListEl.appendChild(div);
+                    });
+                    Storage.set('messages', messages);
+                }
+
+                if (addMessageBtn) {
+                    addMessageBtn.addEventListener('click', () => {
+                        const val = messageInput.value.trim();
+                        if (val) {
+                            messages.push({ text: val });
+                            messageInput.value = '';
+                            renderMessages();
+                        }
+                    });
+                }
+
+                if (messageListEl) {
+                    messageListEl.addEventListener('click', (e) => {
+                        const target = e.target.closest('[data-action="delete-msg"]');
+                        if (!target) return;
+                        const index = target.getAttribute('data-index');
+                        messages.splice(index, 1);
+                        renderMessages();
+                    });
+                }
+                renderMessages();
+
+                // 6. مناسباتنا
+                let events = Storage.get('events', [{ title: 'أول مقابلة', date: '2023-03-30' }]);
+                const eventListEl = document.getElementById('eventList');
+                const eventTitleInput = document.getElementById('eventTitleInput');
+                const eventDateInput = document.getElementById('eventDateInput');
+                const addEventBtn = document.getElementById('addEventBtn');
+
+                function renderEvents() {
+                    if (!eventListEl) return;
+                    eventListEl.innerHTML = '';
+                    events.forEach((item, index) => {
+                        const daysLeft = Math.ceil((new Date(item.date) - new Date()) / (1000 * 60 * 60 * 24));
+                        const div = document.createElement('div');
+                        div.className = 'app-item';
+                        div.innerHTML = `
+                            <div class="app-item-content" style="flex-direction: column; align-items: flex-start;">
+                                <strong style="color: #ff99c2;">📅 ${escapeHtml(item.title)}</strong>
+                                <span style="font-size: 11px; color: #b39ddb;">التاريخ: ${item.date} (${daysLeft >= 0 ? `متبقي ${daysLeft} يوم` : 'مرت المناسبة'})</span>
+                            </div>
+                            <div class="app-actions">
+                                <button class="action-icon-btn delete" data-action="delete-event" data-index="${index}">🗑️</button>
+                            </div>
+                        `;
+                        eventListEl.appendChild(div);
+                    });
+                    Storage.set('events', events);
+                }
+
+                if (addEventBtn) {
+                    addEventBtn.addEventListener('click', () => {
+                        const title = eventTitleInput.value.trim();
+                        const date = eventDateInput.value;
+                        if (title && date) {
+                            events.push({ title, date });
+                            eventTitleInput.value = '';
+                            eventDateInput.value = '';
+                            renderEvents();
+                        }
+                    });
+                }
+
+                if (eventListEl) {
+                    eventListEl.addEventListener('click', (e) => {
+                        const target = e.target.closest('[data-action="delete-event"]');
+                        if (!target) return;
+                        const index = target.getAttribute('data-index');
+                        events.splice(index, 1);
+                        renderEvents();
+                    });
+                }
+                renderEvents();
+
+                // 7. Wishlist
+                let wishes = Storage.get('wishes', [{ text: 'ساعة ذكية لطيفة', bought: false }]);
+                const wishListEl = document.getElementById('wishList');
+                const wishInput = document.getElementById('wishInput');
+                const addWishBtn = document.getElementById('addWishBtn');
+
+                function renderWishes() {
+                    if (!wishListEl) return;
+                    wishListEl.innerHTML = '';
+                    wishes.forEach((item, index) => {
+                        const div = document.createElement('div');
+                        div.className = `app-item ${item.bought ? 'completed' : ''}`;
+                        div.innerHTML = `
+                            <div class="app-item-content" data-action="toggle-wish" data-index="${index}">
+                                <span>${item.bought ? '🎁 ✔ ' : '🎁 '} ${escapeHtml(item.text)}</span>
+                            </div>
+                            <div class="app-actions">
+                                <button class="action-icon-btn delete" data-action="delete-wish" data-index="${index}">🗑️</button>
+                            </div>
+                        `;
+                        wishListEl.appendChild(div);
+                    });
+                    Storage.set('wishes', wishes);
+                }
+
+                if (addWishBtn) {
+                    addWishBtn.addEventListener('click', () => {
+                        const val = wishInput.value.trim();
+                        if (val) {
+                            wishes.push({ text: val, bought: false });
+                            wishInput.value = '';
+                            renderWishes();
+                        }
+                    });
+                }
+
+                if (wishListEl) {
+                    wishListEl.addEventListener('click', (e) => {
+                        const target = e.target.closest('[data-action]');
+                        if (!target) return;
+                        const action = target.getAttribute('data-action');
+                        const index = target.getAttribute('data-index');
+                        if (action === 'toggle-wish') {
+                            wishes[index].bought = !wishes[index].bought;
+                            renderWishes();
+                        } else if (action === 'delete-wish') {
+                            wishes.splice(index, 1);
+                            renderWishes();
+                        }
+                    });
+                }
+                renderWishes();
+
+                // 8. الأماكن التي زرناها
+                let places = Storage.get('places', [{ title: 'الكافيه الأول', note: 'كان أحلى قعدة' }]);
+                const placeListEl = document.getElementById('placeList');
+                const placeTitleInput = document.getElementById('placeTitleInput');
+                const placeNoteInput = document.getElementById('placeNoteInput');
+                const addPlaceBtn = document.getElementById('addPlaceBtn');
+
+                function renderPlaces() {
+                    if (!placeListEl) return;
+                    placeListEl.innerHTML = '';
+                    places.forEach((item, index) => {
+                        const div = document.createElement('div');
+                        div.className = 'app-item';
+                        div.innerHTML = `
+                            <div class="app-item-content" style="flex-direction: column; align-items: flex-start;">
+                                <strong style="color: #ff99c2;">📍 ${escapeHtml(item.title)}</strong>
+                                <span style="font-size: 11px; color: #b39ddb;">${escapeHtml(item.note)}</span>
+                            </div>
+                            <div class="app-actions">
+                                <button class="action-icon-btn delete" data-action="delete-place" data-index="${index}">🗑️</button>
+                            </div>
+                        `;
+                        placeListEl.appendChild(div);
+                    });
+                    Storage.set('places', places);
+                }
+
+                if (addPlaceBtn) {
+                    addPlaceBtn.addEventListener('click', () => {
+                        const title = placeTitleInput.value.trim();
+                        const note = placeNoteInput.value.trim();
+                        if (title) {
+                            places.push({ title, note });
+                            placeTitleInput.value = '';
+                            placeNoteInput.value = '';
+                            renderPlaces();
+                        }
+                    });
+                }
+
+                if (placeListEl) {
+                    placeListEl.addEventListener('click', (e) => {
+                        const target = e.target.closest('[data-action="delete-place"]');
+                        if (!target) return;
+                        const index = target.getAttribute('data-index');
+                        places.splice(index, 1);
+                        renderPlaces();
+                    });
+                }
+                renderPlaces();
+
+                // 9. أغانينا المفضلة
+                let songs = Storage.get('songs', [{ title: 'أغنيتنا الخاصة', url: '#' }]);
+                const songListEl = document.getElementById('songList');
+                const songTitleInput = document.getElementById('songTitleInput');
+                const songUrlInput = document.getElementById('songUrlInput');
+                const addSongBtn = document.getElementById('addSongBtn');
+
+                function renderSongs() {
+                    if (!songListEl) return;
+                    songListEl.innerHTML = '';
+                    songs.forEach((item, index) => {
+                        const div = document.createElement('div');
+                        div.className = 'app-item';
+                        div.innerHTML = `
+                            <div class="app-item-content">
+                                <span>🎵 <a href="${escapeHtml(item.url)}" target="_blank" style="color: #ff99c2; text-decoration: none;">${escapeHtml(item.title)}</a></span>
+                            </div>
+                            <div class="app-actions">
+                                <button class="action-icon-btn delete" data-action="delete-song" data-index="${index}">🗑️</button>
+                            </div>
+                        `;
+                        songListEl.appendChild(div);
+                    });
+                    Storage.set('songs', songs);
+                }
+
+                if (addSongBtn) {
+                    addSongBtn.addEventListener('click', () => {
+                        const title = songTitleInput.value.trim();
+                        const url = songUrlInput.value.trim() || '#';
+                        if (title) {
+                            songs.push({ title, url });
+                            songTitleInput.value = '';
+                            songUrlInput.value = '';
+                            renderSongs();
+                        }
+                    });
+                }
+
+                if (songListEl) {
+                    songListEl.addEventListener('click', (e) => {
+                        const target = e.target.closest('[data-action="delete-song"]');
+                        if (!target) return;
+                        const index = target.getAttribute('data-index');
+                        songs.splice(index, 1);
+                        renderSongs();
+                    });
+                }
+                renderSongs();
+
+                // 10. رسالة اليوم العشوائية
+                const dailyMessages = [
+                    "وجودك معي يغنيني عن العالم بأكمله يا أجمل أقداري ❤️",
+                    "كل ثانية تقضينها معي هي عيد بالنسبة لي ✨",
+                    "أنتِ النور الذي أضاء لي طريق حياتي المظلم 🌟",
+                    "أحبك عدد ما في الكون من نبضات قلوب 💕",
+                    "مهما مرت السنوات، سأبقى أحبك بنفس شغف البداية وأكثر 🌹"
+                ];
+                const randomMsg = dailyMessages[Math.floor(Math.random() * dailyMessages.length)];
+                const dailyEl = document.getElementById('dailyLoveMessage');
+                if (dailyEl) dailyEl.innerText = randomMsg;
+
+                // 11. Timeline زمني مبسط
+                const timelineListEl = document.getElementById('timelineList');
+                if (timelineListEl) {
+                    timelineListEl.innerHTML = `
+                        <div class="app-item">
+                            <div class="app-item-content"><span>📅 2023-03-30: بداية قصتنا وأول لقاء ❤️</span></div>
+                        </div>
+                        <div class="app-item">
+                            <div class="app-item-content"><span>✨ مستمرون معاً للأبد بحب وسعادة ♾️</span></div>
+                        </div>
+                    `;
+                }
+            }
+
+            // دالة أمان لمنع الثغرات النصية (XSS)
+            function escapeHtml(str) {
+                return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
+            }
+        });
     </script>
+        <div style="text-align: center; padding: 20px 0; background: var(--dark-card, #151B22); border-top: 1px solid var(--border, #30363D); margin-top: 40px; color: var(--gray, #8B949E); font-size: 13px; font-family: 'Cairo', sans-serif;">
+    تم التطوير بواسطة <span style="color: var(--primary, #FF4757); font-weight: 700;">Abdelrhman Mohamed | Web Developer</span>
+        </div>
 </body>
 </html>
-
